@@ -7,7 +7,8 @@ using UnityEngine;
 public class UpForceTrigger : MonoBehaviour
 {
     public EqualForceScale equalForceScale;
-
+    
+    
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("MeasureableWeight"))
@@ -18,7 +19,11 @@ public class UpForceTrigger : MonoBehaviour
         else if (other.CompareTag("UpForce"))
         {
             other.GetComponent<Rigidbody>().useGravity = false;
-            other.GetComponent<Rigidbody>().velocity = Vector3.up;
+            other.GetComponent<Rigidbody>().AddRelativeForce(-Physics.gravity, ForceMode.Acceleration);
+        }
+        else if (other.CompareTag("UpForce") && !equalForceScale._impulseUpPerRigidBody.ContainsKey(other.GetComponent<Rigidbody>()))
+        {
+            equalForceScale._impulseUpPerRigidBody.Add(other.GetComponent<Rigidbody>(), 0);
         }
     }
 
@@ -32,7 +37,11 @@ public class UpForceTrigger : MonoBehaviour
         else if (other.CompareTag("UpForce"))
         {
             other.GetComponent<Rigidbody>().useGravity = false;
-            other.GetComponent<Rigidbody>().velocity = Vector3.up * Physics.gravity.magnitude;
+            other.GetComponent<Rigidbody>().AddRelativeForce(-Physics.gravity, ForceMode.Acceleration);
+        }
+        else if (other.CompareTag("UpForce") && !equalForceScale._impulseUpPerRigidBody.ContainsKey(other.GetComponent<Rigidbody>()))
+        {
+            equalForceScale._impulseUpPerRigidBody.Add(other.GetComponent<Rigidbody>(), 0);
         }
     }
 

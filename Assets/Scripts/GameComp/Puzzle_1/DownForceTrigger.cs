@@ -14,7 +14,7 @@ public class DownForceTrigger : MonoBehaviour
             other.tag = "DownForce";
             equalForceScale._impulseDownPerRigidBody.Add(other.GetComponent<Rigidbody>(), 0);
         }
-        else if (other.CompareTag("DownForce"))
+        else if (other.CompareTag("DownForce") && !equalForceScale._impulseDownPerRigidBody.ContainsKey(other.GetComponent<Rigidbody>()))
         {
             equalForceScale._impulseDownPerRigidBody.Add(other.GetComponent<Rigidbody>(), 0);
         }
@@ -27,7 +27,7 @@ public class DownForceTrigger : MonoBehaviour
             other.tag = "DownForce";
             equalForceScale._impulseDownPerRigidBody.Add(other.GetComponent<Rigidbody>(), 0);
         }
-        else if (other.CompareTag("DownForce"))
+        else if (other.CompareTag("DownForce") && !equalForceScale._impulseDownPerRigidBody.ContainsKey(other.GetComponent<Rigidbody>()))
         {
             equalForceScale._impulseDownPerRigidBody.Add(other.GetComponent<Rigidbody>(), 0);
         }
