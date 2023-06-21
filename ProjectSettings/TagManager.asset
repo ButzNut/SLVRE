@@ -9,6 +9,7 @@ TagManager:
   - MeasureableWeight
   - UpForce
   - DownForce
+  - Ship
   layers:
   - Default
   - TransparentFX
