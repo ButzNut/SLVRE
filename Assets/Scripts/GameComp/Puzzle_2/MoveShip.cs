@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class MoveShip : MonoBehaviour
 {
-    private Rigidbody rb;
+    [HideInInspector] public Rigidbody rb;
     public float movementSpeed;
     
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponentInChildren<Rigidbody>();
     }
 
     public void MoveShipXZ(Vector3 direction)

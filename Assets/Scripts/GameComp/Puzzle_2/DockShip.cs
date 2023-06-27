@@ -6,14 +6,16 @@ using UnityEngine;
 public class DockShip : MonoBehaviour
 {
     public Transform spaceDock, spaceShip;
-    bool docking = false;
+    public bool docking = false;
+    public MoveShip moveShip;
 
 
     private void FixedUpdate()
     {
         if (docking)
         {
-            spaceShip.position = Vector3.Lerp(spaceShip.position, spaceDock.position, 0.1f);
+            //Move the ship according to the child of the ship and stop when it reaches the dock
+            spaceShip.position = Vector3.MoveTowards(spaceShip.position, spaceDock.position, 0.1f);
         }
     }
 
@@ -21,7 +23,10 @@ public class DockShip : MonoBehaviour
     {
         if (other.CompareTag("Ship"))
         {
+            //stop the rigidbody movement
+            moveShip.rb.velocity = Vector3.zero;
             docking = true;
+            
         }
     }
 }
